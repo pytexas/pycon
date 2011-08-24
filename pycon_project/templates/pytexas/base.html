@@ -1,0 +1,205 @@
+{% load analytics_tags i18n markitup_tags %}
+{% load account_tags %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head> 
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/> 
+    <link href="{{ STATIC_URL }}img/favicon.ico" rel="shortcut icon" />
+    <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} : {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
+    <!--  hack to make IE able to apply CSS to elements that it doesn't usually know about. See http://code.google.com/p/html5shim/ -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/tabs.css" />
+    {% markitup_css %}
+    {% block css_framework %}{% endblock %}
+    {% block extra_head_base %}
+        {% block extra_head %}{% endblock %}
+    {% endblock %}
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+        }
+        div.wrapper {
+            margin: 0 auto;
+            width: 920px;
+            padding: 10px 40px;
+        }
+        header {
+            padding: 22px 0 25px 0;
+            line-height: 1.4;
+        }
+        header h1 {
+            color: #28B;
+            font: normal normal 80px 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+            padding: 0;
+            margin: 0 0 10px 0;
+        }
+        header p.description {
+            margin: 30px 0 0 0;
+            font-size: 18px;
+        }
+        nav {
+            line-height: 1.2;
+            margin: 0;
+            border: 1px solid #DDD;
+        }
+        nav ul {
+            list-style-type: none;
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            float: left;
+            margin: 0;
+            padding: 0;
+            border-right: 1px solid #DDD;
+        }
+        nav ul li a {
+            padding: 0.6em 1em;
+            color: #666;
+            font-size: 12px;
+            text-decoration: none;
+            display: block;
+        }
+        nav ul li a:hover {
+            background-color: #EEE;
+        }
+        .columns {
+            float: left;
+            width: 100%;
+        }
+        .columns .left-column {
+            float: left;
+            width: 250px;
+            padding: 15px 15px 15px 30px;
+            margin-top: 25px;
+        }
+        .columns .left-column h2 {
+            margin: 0 0 1em 0;
+            color: black;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+        .columns .left-column ul {
+            list-style-type: disc;
+            line-height: 1.2;
+            padding: 0 0 0 1.25em;
+            margin: 0;
+        }
+        .columns .left-column ul li {
+            text-indent: 0;
+            color: #666;
+            font-size: 12px;
+            padding: 0.25em 0;
+        }
+        .columns .left-column ul li a {
+            text-decoration: none;
+            color: #28B;
+        }
+        .columns .center-column {
+            float: left;
+            width: 400px;
+            margin: 0 1em;
+            margin-top: 30px;
+        }
+        .columns .right-column {
+            float: left;
+            width: 150px;
+            padding: 15px;
+            margin-top: 25px;
+        }
+        .columns .right-column h2 {
+            color: #666;
+            line-height: 1.4;
+            font-size: 18px;
+            margin: 0;
+            padding: 0;
+        }
+        .columns .right-column h3 {
+            color: black;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin: 0;
+        }
+        .columns .right-column h3.top-spacing {
+            margin-top: 30px;
+        }
+        .clear {
+            clear: both;
+        }
+        p.caption {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+        img.thumbnail {
+            padding: 2px;
+            background: white;
+            border: 1px solid #EEE;
+        }
+        #footer {
+            border-top: 1px dashed #ccc;
+            clear: both;
+            padding: 25px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head> 
+
+<body class="{% block body_class %}{% endblock %} {% if LANGUAGE_BIDI %}bidi{% endif %}" id="{% block body_id %}{% endblock %}"> 
+    <div class="wrapper">
+        <header>
+            {% block header %}
+                <h1>PyTexas</h1>
+            {% endblock %}
+            <p class="description">
+                {% block description %}{% endblock %}
+            </p>
+        </header>
+        <nav>
+            {% block nav %}{% endblock %}
+            <div class="clear"></div>
+        </nav>
+        <div class="columns">
+            <div class="left-column">
+              <a href="http://tamu.edu"><img class="thumbnail" width="150" height="86" src="{{ STATIC_URL }}img/Texas-A-M-University-campus-in-College-Station_slide.jpg" /><a/>
+              <p class="caption">Thank you Texas A&amp;M!</p>
+              <h2>External PyTexas Links</h2>
+              <ul>
+                <li><a href="https://spreadsheets.google.com/spreadsheet/ccc?key=0AhPmDnJC8EfldDFiTldOWEctQzNVVkV0ZC15ZXR2bGc&amp;hl=en_US">PyTexas 2011 Schedule</a></li>
+                <li><a href="http://wiki.pytexas.org/VenueInfo2011">Location Details for PyTexas 2011</a></li>
+                <li><a href="http://pytexas.org/PyTexas2011">PyTexas 2011 Wiki</a></li>
+                <li><a href="http://wiki.pytexas.org/PyTexas">PyTexas History</a></li>
+              </ul>
+              <h2>PyTexas Wiki</h2>
+              <ul>
+                <li><a href="http://wiki.pytexas.org/">PyTexas Wiki Home</a></li>
+                <li><a href="http://wiki.pytexas.org/HowToEditPyTexasWiki">How to Edit PyTexas Wiki</a></li>
+                <li><a href="http://wiki.pytexas.org/PythonEmployers">Area Python Employers</a></li>
+                <li><a href="http://wiki.pytexas.org/JoinTexasPythonCommunity">Texas Python User Groups</a></li>
+              </ul>
+            </div>
+            <div class="center-column">
+                {% block body_base %}
+                    {% block body %}Content goes here{% endblock %}
+                {% endblock %}
+            </div>
+            <div class="right-column">
+              {% include "_sponsors.html" %}
+            </div>
+        </div>
+        <div id="footer">
+            {% block footer %}sdfsdf{% endblock %}
+        </div>
+    </div>
+    {% block extra_body_base %}
+        {% block extra_body %}{% endblock %}
+    {% endblock %}
+</body> 
+</html>
