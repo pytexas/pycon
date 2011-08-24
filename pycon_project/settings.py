@@ -175,7 +175,6 @@ INSTALLED_APPS = [
     "symposion.proposals",
     "symposion.speakers",
     "symposion.sponsors_pro",
-    "symposion.schedule",
     
     # project
     "boxes",
@@ -227,9 +226,9 @@ MARKITUP_SKIN = "markitup/skins/simple"
 MARKITUP_FILTER = ("wiki.markdown_parser.parse", {})
 MARKITUP_MEDIA_URL = STATIC_URL
 
-ACCEPTING_PROPOSALS = True
+ACCEPTING_PROPOSALS = False
 
-SCHEDULE_TIMEZONE = "US/Pacific"
+SCHEDULE_TIMEZONE = "US/Central"
 
 MAILOUT_MODULES = [
     "symposion.email_lists.organizers",
@@ -246,14 +245,14 @@ ANALYTICS_SETTINGS = {
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+DEFAULT_FROM_EMAIL = "mailer@us.pycon.org"
+MEDIA_URL = "/2012/site_media/media/"
+STATIC_URL = "/2012/site_media/static/"
+ADMIN_MEDIA_PREFIX = "/2012/site_media/static/admin/"
+
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
 try:
     from local_settings import *
 except ImportError:
     pass
-
-DEFAULT_FROM_EMAIL = "mailer@us.pycon.org"
-MEDIA_URL = "/2012/site_media/media/"
-STATIC_URL = "/2012/site_media/static/"
-ADMIN_MEDIA_PREFIX = "/2012/site_media/static/admin/"
