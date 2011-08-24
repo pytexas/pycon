@@ -14,7 +14,7 @@ handler500 = "pinax.views.server_error"
 
 
 urlpatterns = patterns("",
-    url(r"^$", redirect_to, {"url": "/%s/"  % settings.PYCON_YEAR}),
+    url(r"^$", redirect_to, {"url": "/%s/" % settings.PYCON_YEAR}),
     url(r"^%s/" % settings.PYCON_YEAR, include(patterns("",
         url(r"^$", direct_to_template, {"template": "homepage.html"}, name="home"),
         url(r"^account/signup/$", "pinax.apps.account.views.signup", name="acct_signup"),
@@ -57,7 +57,6 @@ urlpatterns = patterns("",
     ))),
 )
 
-
 if settings.SERVE_MEDIA:
     urlpatterns += patterns("",
         url(r"^favicon.ico$", redirect_to, {
@@ -68,3 +67,8 @@ if settings.SERVE_MEDIA:
         }),
         url(r"", include("staticfiles.urls")),
     )
+
+try:
+    from local_urls import urlpatterns
+except:
+    pass
