@@ -20,24 +20,6 @@
 PyTexas 2011, the fourth annual Python programming conference for Texas and the surrounding region, will take place Saturday September 10 and Sunday September 11, 2011 at Texas A&M University in College Station, Texas.
 {% endblock %}
 
-{% block nav %}
-<ul>
-  <li class='selected'><a href='http://pytexas.blogspot.com/'>Home</a></li> 
-  <li><a href='http://pytexas.blogspot.com/p/pycon-2011-sponsorship.html'>Sponsor PyTexas 2011</a></li> 
-  <li><a href='http://pytexas.blogspot.com/p/general-registration.html'>Registration</a></li> 
-  <li><a href='http://pytexas.blogspot.com/p/pytexas-2011-registration.html'>PyTexas 2011 Surveys</a></li> 
-  <li><a href='http://pytexas.blogspot.com/p/community.html'>Community</a></li> 
-  <li><a href='http://pytexas.blogspot.com/p/about-this-site.html'>About This Site</a></li> 
-  <li><a href='http://pytexas.blogspot.com/p/prizes.html'>Prizes</a></li> 
-</ul>
-{% endblock %}
+{% block nav %}{% include "_nav.html" %}{% endblock %}
 
-{% block footer %}
-    <p>
-        PyCon US 2012 is a production of the <a href="http://python.org/psf/">Python Software Foundation</a>.
-    <br />
-        Site built by <a href="http://eldarion.com">Eldarion</a> using <a href="http://djangoproject.com">Django</a> and <a href="http://pinaxproject.com">Pinax</a>. Hosting provided by <a href="http://gondor.io">Gondor</a>.
-    <br />
-        Questions? Comments? Contact <a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>
-    </p>
-{% endblock %}
+{% block footer %}{% include "_footer.html" %}{% endblock %}
