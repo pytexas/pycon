@@ -1,3 +1,42 @@
 {% extends "site_base.html" %}
 
+{% load cache %}
+{% load get_rss from rss_tags %}
+
 {% block head_title %}Home{% endblock %}
+
+
+{% block body %}
+<p>PyTexas 2011, the fourth annual Python programming conference for
+Texas and the surrounding region, will take place Saturday September
+10 and Sunday September 11, 2011 at Texas A&M University in College
+Station, Texas.</p>
+<p><img src="http://wiki.pytexas.org/PyTexas2011?action=AttachFile&do=get&target=Texas-A-M-University-campus-in-College-Station_slide.jpg" alt="PyTexas 2011" width="350px" /></p>
+<p>
+Last year with 94 attendees, PyTexas 2010 reached critical mass to
+achieve an exciting event akin to a small taste of
+<a href="http://us.pycon.org/" alt="PyCon">PyCon</a>, and this year we're want to further
+boost participation and sponsor support. As of Aug 25, PyTexas 2011
+has 150 registrations! This includes 123 confirmed attendees, 26
+tentative, and 1 unable to attend.
+</p>
+{% endblock %}
+
+
+{% block extra_left_sidebar %}
+{% cache 500 rss_display %}
+    <h2>Blog</h2>
+    <div class="blog-feed">
+    {% get_rss "http://pytexas.blogspot.com/feeds/posts/default?alt=rss" as rss %}
+    {% for entry in rss.entries|slice:":3" %}
+        <h4><a href="{{ entry.link }}">{{ entry.title }}</a></h4>
+        <p class="meta">
+            By {{ entry.author_detail.name }}
+            <span class="date">
+                 on {{ entry.updated_parsed|date:"D N jS Y" }}
+            </span>
+        </p>
+    {% endfor %}
+    </div>
+{% endcache %}
+{% endblock %}
