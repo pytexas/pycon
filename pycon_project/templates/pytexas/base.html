@@ -34,6 +34,7 @@
             <div class="clear"></div>
         </nav>
         <div class="columns">
+            {% block left_column %}
             <div class="left-column">
               <a href="http://tamu.edu"><img class="thumbnail" width="150" height="86" src="{{ STATIC_URL }}img/Texas-A-M-University-campus-in-College-Station_slide.jpg" /><a/>
               <p class="caption">Thank you Texas A&amp;M!</p>
@@ -53,14 +54,17 @@
               </ul>
               {% block extra_left_sidebar %}{% endblock %}
             </div>
+            {% endblock %}
             <div class="center-column">
                 {% block body_base %}
                     {% block body %}Content goes here{% endblock %}
                 {% endblock %}
             </div>
+            {% block right_column %}
             <div class="right-column">
               {% include "_sponsors.html" %}
             </div>
+            {% endblock %}
         </div>
         <div id="footer">
             {% block footer %}{% endblock %}
