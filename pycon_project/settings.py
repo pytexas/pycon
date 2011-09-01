@@ -8,7 +8,8 @@ import pinax
 PINAX_ROOT = os.path.abspath(os.path.dirname(pinax.__file__))
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-PYCON_YEAR = "2012"
+PYCON_YEAR = "2011"
+DIR_NAME = "pytexas"
 
 # tells Pinax to use the default theme
 PINAX_THEME = "default"
@@ -30,8 +31,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2", # Add "postgresql_psycopg2", "postgresql", "mysql", "sqlite3" or "oracle".
-        "NAME": "pycon", # Or path to database file if using sqlite3.
+        "ENGINE": "django.db.backends.postgresql_psycopg2",  # Add "postgresql_psycopg2", "postgresql", "mysql", "sqlite3" or "oracle".
+        "NAME": "pycon",  # Or path to database file if using sqlite3.
         "USER": "",                             # Not used with sqlite3.
         "PASSWORD": "",                         # Not used with sqlite3.
         "HOST": "",                             # Set to empty string for localhost. Not used with sqlite3.
@@ -44,7 +45,7 @@ DATABASES = {
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = "US/Eastern"
+TIME_ZONE = "US/Central"
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -75,6 +76,7 @@ STATIC_URL = "/%s/site_media/static/" % PYCON_YEAR
 
 # Additional directories which hold static files
 STATICFILES_DIRS = [
+    os.path.join(PROJECT_ROOT, "static", DIR_NAME),
     os.path.join(PROJECT_ROOT, "static", PYCON_YEAR),
     os.path.join(PINAX_ROOT, "themes", PINAX_THEME, "static"),
 ]
@@ -108,12 +110,14 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "pinax.middleware.security.HideSensistiveFieldsMiddleware",
     "reversion.middleware.RevisionMiddleware",
+    "redirect.middleware.RedirectMiddleware"
     #"debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "pycon_project.urls"
 
 TEMPLATE_DIRS = [
+    os.path.join(PROJECT_ROOT, "templates", DIR_NAME),
     os.path.join(PROJECT_ROOT, "templates"),
 ]
 
@@ -123,14 +127,10 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
-    
     "staticfiles.context_processors.static_url",
-    
     "pinax.core.context_processors.pinax_settings",
-    
     "pinax.apps.account.context_processors.account",
-    
-    # "review.context_processors.permissions",
+    "pytexas.context_processors.pytexas_contexts"
 ]
 
 INSTALLED_APPS = [
@@ -142,14 +142,14 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.humanize",
-    
+
     # external
     "uni_form",
     "staticfiles",
     "debug_toolbar",
     "markitup",
     "nashvegas",
-    
+
     "emailconfirmation",
     "timezones",
     "django_openid",
@@ -163,23 +163,28 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "mailout",
     "reversion",
-    
+
     # Pinax
     "pinax.templatetags",
     "pinax.apps.waitinglist",
     "pinax.apps.account",
     "pinax.apps.analytics",
-    
+
     # symposion
     "symposion.conference",
     "symposion.proposals",
     "symposion.speakers",
     "symposion.sponsors_pro",
-    
+
     # project
     "boxes",
     "wiki",
     "rss",
+
+    # pytexas
+    "base",
+    "pytexas",
+    "redirect",
 ]
 
 FIXTURE_DIRS = [
@@ -188,8 +193,8 @@ FIXTURE_DIRS = [
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
-CONTACT_EMAIL = "pycon-organizers@python.org"
-SITE_NAME = "PyCon 2012 Santa Clara - A Conference for the Python Community"
+CONTACT_EMAIL = "talk.to.us@pytexas.net"
+SITE_NAME = "PyCon 2011"
 
 DEBUG_TOOLBAR_CONFIG = {
     "INTERCEPT_REDIRECTS": False,
@@ -218,8 +223,8 @@ LOGIN_REDIRECT_URLNAME = "home"
 EMAIL_CONFIRMATION_DAYS = 3
 
 WAKAWAKA_DEFAULT_INDEX = "index"
-WAKAWAKA_SLUG_REGEX = r"((\w{2,})(/\w{2,})*)" # allow lower case wiki page names
-WAKAWAKA_LOCK_TIMEOUT = 10*60
+WAKAWAKA_SLUG_REGEX = r"((\w{2,})(/\w{2,})*)"  # allow lower case wiki page names
+WAKAWAKA_LOCK_TIMEOUT = 10 * 60
 
 MARKITUP_AUTO_PREVIEW = True
 MARKITUP_SET = "markitup/sets/markdown-custom"
@@ -238,18 +243,15 @@ MAILOUT_MODULES = [
 REDIS_PARAMS = dict(host="127.0.0.1")
 
 ANALYTICS_SETTINGS = {
-    "google": {
-        "2": "UA-2401894-29", # staging
-        "3": "UA-2401894-29", # production
-    }
+    "google": {}
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "bots@pytexas.org"
 
-DEFAULT_FROM_EMAIL = "mailer@us.pycon.org"
-MEDIA_URL = "/2012/site_media/media/"
-STATIC_URL = "/2012/site_media/static/"
-ADMIN_MEDIA_PREFIX = "/2012/site_media/static/admin/"
+MEDIA_URL = "/%s/site_media/media/" % DIR_NAME
+STATIC_URL = "/%s/site_media/static/" % DIR_NAME
+ADMIN_MEDIA_PREFIX = "/%s/site_media/static/admin/" % DIR_NAME
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
