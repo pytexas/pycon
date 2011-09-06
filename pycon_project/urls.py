@@ -28,6 +28,7 @@ urlpatterns = patterns("",
         url(r"^surveys/$", direct_to_template, {"template": "pytexas/surveys.html"}, name="surveys"),
         url(r"^community/$", direct_to_template, {"template": "pytexas/community.html"}, name="community"),
         url(r"^prizes/$", direct_to_template, {"template": "pytexas/prizes.html"}, name="prizes"),
+        url(r"^schedule-survey/$", direct_to_template, {"template": "pytexas/schedule_survey.html"}, name="schedule_survey"),
     ))),
 )
 
