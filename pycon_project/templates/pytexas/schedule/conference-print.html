@@ -48,15 +48,13 @@
     <h1>Conference Schedule</h1>
 
     <div id="conference-schedule">
-    {% schedule_cache %}
-        <h2>Saturday</h2>
-        
-        {% include "schedule/_grid_print.html" with slots=timetables.saturday.slots.all %}
-        
-        <h2>Sunday</h2>
-        
-        {% include "schedule/_grid_print.html" with slots=timetables.sunday.slots.all %}
-    {% endschedule_cache %}
+    <h2>Saturday</h2>
+    
+    {% include "schedule/_grid_print.html" with slots=timetables.saturday.slots.all %}
+    
+    <h2>Sunday</h2>
+    
+    {% include "schedule/_grid_print.html" with slots=timetables.sunday.slots.all %}
     </div>
 {% endblock %}
 
