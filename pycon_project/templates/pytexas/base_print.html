@@ -1,0 +1,29 @@
+{% load analytics_tags i18n markitup_tags %}
+{% load account_tags %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head> 
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/> 
+    <link href="{{ STATIC_URL }}img/favicon.ico" rel="shortcut icon" />
+    <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }}: {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
+    {% block extra_head_base %}
+        {% block extra_head %}{% endblock %}
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/styles.css">
+    <style type="text/css">
+      body {
+        margin: 10px;
+        width: 50%;
+      }
+    </style>
+</head> 
+
+<body class="{% block body_class %}{% endblock %} {% if LANGUAGE_BIDI %}bidi{% endif %}" id="{% block body_id %}{% endblock %}"> 
+{% block body_base %}
+    {% block body %}Content goes here{% endblock %}
+{% endblock %}
+    {% block extra_body_base %}
+        {% block extra_body %}{% endblock %}
+    {% endblock %}
+</body> 
+</html>

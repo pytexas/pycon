@@ -1,4 +1,4 @@
-{% extends "schedule/base.html" %}
+{% extends "base_print.html" %}
 
 {% load schedule_tags %}
 
@@ -48,15 +48,14 @@
     <h1>Conference Schedule</h1>
 
     <div id="conference-schedule">
-    <a href="{% url schedule_conference_print %}">Schedule Print View</a>
     {% schedule_cache %}
         <h2>Saturday</h2>
         
-        {% include "schedule/_grid.html" with slots=timetables.saturday.slots.all %}
+        {% include "schedule/_grid_print.html" with slots=timetables.saturday.slots.all %}
         
         <h2>Sunday</h2>
         
-        {% include "schedule/_grid.html" with slots=timetables.sunday.slots.all %}
+        {% include "schedule/_grid_print.html" with slots=timetables.sunday.slots.all %}
     {% endschedule_cache %}
     </div>
 {% endblock %}
