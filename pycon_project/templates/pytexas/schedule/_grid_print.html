@@ -11,7 +11,9 @@
 	    		 {% endfor %}
 	    	{% endif %}
 	    </div>
-		<div class="pres-date">{{ slot.start|date:"P" }} to {{ slot.end|date:"P" }}</div>
+		<div class="pres-date">{{ slot.start|date:"P" }} to {{ slot.end|date:"P" }}
+		({{ slot.presentation.slot.track.name }} {{ slot.title }})
+		</div>
 	</div>
 	{% endif %}
 {% endfor %}
