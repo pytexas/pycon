@@ -13,14 +13,14 @@
 	    </div>
 		<div class="pres-date">{{ slot.start|date:"P" }} to {{ slot.end|date:"P" }}
 		({{ slot.presentation.slot.track.name }} {{ slot.title }})</div>
-		{% if "N/A" not in slot.presentation.description %}
+		{% if "N/A" not in slot.presentation.abstract %}
 		<div class="pres-abstract">
-			{{ slot.presentation.description }}
+			{{ slot.presentation.abstract }}
 		</div>
 		{% endif %}
-		{% if "N/A" not in slot.presentation.abstract %}
+		{% if "N/A" not in slot.presentation.description %}
 		<div class="pres-desc">
-			{{ slot.presentation.abstract }}
+			{{ slot.presentation.description }}
 		</div>
 		{% endif %}
 	</div>
