@@ -1,4 +1,5 @@
 {% for slot in slots %}
+    {% if slot.presentation.title %}
 	<div class="presentation {% if forloop.last %}last{% endif %}">
 	    <div class="pres-title">{{ slot.presentation.title }}</div>
 	    <div class="pres-speaker">
@@ -11,12 +12,17 @@
 	    	{% endif %}
 	    </div>
 		<div class="pres-date">{{ slot.start|date:"P" }} to {{ slot.end|date:"P" }}
-		({{ slot.presentation.slot.track.name }})</div>
+		({{ slot.presentation.slot.track.name }} {{ slot.title }})</div>
+		{% if "N/A" not in slot.presentation.description %}
 		<div class="pres-abstract">
 			{{ slot.presentation.description }}
 		</div>
+		{% endif %}
+		{% if "N/A" not in slot.presentation.abstract %}
 		<div class="pres-desc">
 			{{ slot.presentation.abstract }}
 		</div>
+		{% endif %}
 	</div>
+	{% endif %}
 {% endfor %}
