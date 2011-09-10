@@ -11,17 +11,12 @@
 	    	{% endif %}
 	    </div>
 		<div class="pres-date">{{ slot.start|date:"P" }} to {{ slot.end|date:"P" }}
-		({{ slot.presentation.slot.track.name }} - {{ slot.title }})</div>
-		{% if "N/A" in slot.presentation.description %}
-			<div class="pres-abstract">
-				{{ slot.presentation.description }}
-				<!-- <p><a class="toggle-pres-desc" href="#">Full Description ..</a></p> -->
-			</div>
-		{% endif %}
-		{% if "N/A" in slot.presentation.abstract %}
-			<div class="pres-desc">
-				{{ slot.presentation.abstract }}
-			</div>
-		{% endif %}
+		({{ slot.presentation.slot.track.name }})</div>
+		<div class="pres-abstract">
+			{{ slot.presentation.description }}
+		</div>
+		<div class="pres-desc">
+			{{ slot.presentation.abstract }}
+		</div>
 	</div>
 {% endfor %}
