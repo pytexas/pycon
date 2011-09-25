@@ -23,7 +23,12 @@
     <div class="wrapper">
         <header>
             {% block header %}
-                <h1><a href="/" alt="{{ SITE_NAME }}">PyTexas</a></h1>
+                <h1><a href="/" alt="{{ SITE_NAME }}">PyTexas</a>
+                    <a href="http://rackspace.com">
+                        <img src="http://static.pytexas.org/sponsor_logos/Powered_by_Rackspace_logos/RS_PoweredByLogo-2c.png" 
+                             alt="Powered by Rackspace" width="160" align="right">
+                    </a>
+                </h1>
             {% endblock %}
             <p class="description">
                 {% block description %}{% endblock %}
