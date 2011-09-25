@@ -17,6 +17,7 @@
         {% block extra_head %}{% endblock %}
     {% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/styles.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
 </head> 
 
 <body class="{% block body_class %}{% endblock %} {% if LANGUAGE_BIDI %}bidi{% endif %}" id="{% block body_id %}{% endblock %}"> 
@@ -39,9 +40,18 @@
             <div class="clear"></div>
         </nav>
         <div class="columns">
+            {% block left_column %}
             <div class="left-column">
-              <a href="http://tamu.edu"><img class="thumbnail" width="150" height="86" src="{{ STATIC_URL }}img/Texas-A-M-University-campus-in-College-Station_slide.jpg" /><a/>
-              <p class="caption">Thank you Texas A&amp;M!</p>
+              <h2 class="left-column-top-header">Venue Sponsor</h2>
+              <p class="caption">Thanks to the TAMU Computer Science Dept for hosting PyTexas 2011!</p>
+              <a href="http://www.cs.tamu.edu/" alt="TAMU - College of Computer Science">
+                <img src="http://static.pytexas.org/sponsor_logos/TAMU_cslogo_color.jpg" />
+              <a/>
+              <h2>Food &amp; Beverage Sponsor</h2>
+              <p class="caption">Thanks to the TAMU College of Architecture for providing breakfast, coffee, and snacks!</p>
+              <a href="http://www.arch.tamu.edu/" alt="TAMU - College of Architecture">
+                <img width="210" src="http://static.pytexas.org/sponsor_logos/TAMU_College_of_Architecture_logo.jpg" />
+              <a/>
               <h2>External PyTexas Links</h2>
               <ul>
                 <li><a href="https://spreadsheets.google.com/spreadsheet/ccc?key=0AhPmDnJC8EfldDFiTldOWEctQzNVVkV0ZC15ZXR2bGc&amp;hl=en_US">PyTexas 2011 Schedule</a></li>
@@ -58,14 +68,17 @@
               </ul>
               {% block extra_left_sidebar %}{% endblock %}
             </div>
+            {% endblock %}
             <div class="center-column">
                 {% block body_base %}
                     {% block body %}Content goes here{% endblock %}
                 {% endblock %}
             </div>
+            {% block right_column %}
             <div class="right-column">
               {% include "_sponsors.html" %}
             </div>
+            {% endblock %}
         </div>
         <div id="footer">
             {% block footer %}{% endblock %}

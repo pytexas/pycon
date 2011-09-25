@@ -1,0 +1,68 @@
+{% extends "base_print.html" %}
+
+{% load schedule_tags %}
+
+{% block head_title %}Conference Schedule{% endblock %}
+
+{% block extra_head %}
+    <style type="text/css">
+        #conference-schedule h2 {
+            color: #222;
+        }
+        .presentation {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 5px 15px 5px;
+        }
+        .pres-title {
+            color: #333;
+        }
+        .pres-speaker {
+            color: #777;
+            font-size: 14px;
+            padding: 2px;
+        }
+        .pres-date {
+            color: #777;
+            font-style: italic;
+            font-size: 12px;
+            padding: 2px;
+        }
+        .pres-abstract {
+            padding: 10px 5px 0 0;
+            font-size: 14px;
+            color: #777;
+        }
+        .pres-desc {
+            padding: 0 5px 0 0;
+            font-size: 14px;
+            color: #777;
+            display: none;
+        }
+        .last {
+            border: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <h1>Conference Schedule</h1>
+
+    <div id="conference-schedule">
+    <h2>Saturday</h2>
+    
+    {% include "schedule/_grid_print.html" with slots=timetables.saturday.slots.all %}
+    
+    <h2>Sunday</h2>
+    
+    {% include "schedule/_grid_print.html" with slots=timetables.sunday.slots.all %}
+    </div>
+{% endblock %}
+
+{% block extra_body %}
+    <script type="text/javascript">
+        $('div.pres-abstract').click(function() {
+            $(this).next('div.pres-desc').toggle();
+            return false;
+        });
+    </script>
+{% endblock %}

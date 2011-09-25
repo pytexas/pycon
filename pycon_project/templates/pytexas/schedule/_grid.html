@@ -1,0 +1,28 @@
+{% for slot in slots %}
+    {% if slot.presentation.title %}
+	<div class="presentation {% if forloop.last %}last{% endif %}">
+	    <div class="pres-title">{{ slot.presentation.title }}</div>
+	    <div class="pres-speaker">
+	    	{{ slot.presentation.speaker.name }}
+	    	{% if slot.presentation.additional_speakers.all %}
+	    		 &nbsp;with&nbsp;
+	    		 {% for speaker in slot.presentation.additional_speakers.all %}
+	    		     {{ speaker.name }}{% if not forloop.last %},&nbsp;{% endif %}
+	    		 {% endfor %}
+	    	{% endif %}
+	    </div>
+		<div class="pres-date">{{ slot.start|date:"P" }} to {{ slot.end|date:"P" }}
+		({{ slot.presentation.slot.track.name }} {{ slot.title }})</div>
+		{% if "N/A" not in slot.presentation.abstract %}
+		<div class="pres-abstract">
+			{{ slot.presentation.abstract }}
+		</div>
+		{% endif %}
+		{% if "N/A" not in slot.presentation.description %}
+		<div class="pres-desc">
+			{{ slot.presentation.description }}
+		</div>
+		{% endif %}
+	</div>
+	{% endif %}
+{% endfor %}
